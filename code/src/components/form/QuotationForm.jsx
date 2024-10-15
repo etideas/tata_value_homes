@@ -67,9 +67,11 @@ const QuotationForm = () => {
   };
 
   return (
-    <div className="w-full flex justify-center px-28">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full">
-        <h1 className="text-4xl font-light mb-8 text-center">Get Quotation</h1>
+    <div className="w-full flex justify-center px-4 md:px-28">
+      <div className="bg-white shadow-lg rounded-lg p-6 md:p-8 w-full">
+        <h1 className="text-2xl md:text-4xl font-light mb-6 md:mb-8 text-center">
+          Get Quotation
+        </h1>
         {status.message && (
           <p
             className={`text-center mb-4 ${
@@ -83,7 +85,7 @@ const QuotationForm = () => {
           onSubmit={handleSubmit}
           className="space-y-6"
         >
-          <div className="flex justify-between space-x-4">
+          <div className="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4">
             <input
               type="text"
               name="name"
@@ -91,7 +93,7 @@ const QuotationForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
             />
             <input
               type="email"
@@ -100,7 +102,7 @@ const QuotationForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
             />
             <input
               type="tel"
@@ -109,7 +111,7 @@ const QuotationForm = () => {
               value={formData.mobile}
               onChange={handleChange}
               required
-              className="w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
+              className="w-full md:w-1/3 px-4 py-2 border border-gray-300 rounded-lg"
             />
           </div>
           <textarea
