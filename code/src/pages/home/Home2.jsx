@@ -48,7 +48,7 @@ const Home = () => {
               <p className="basis-2/3 text-4xl leading-relaxed">
                 New Haven Bahadurgarh, Haryana
               </p>
-              <p>
+              <p className="text ">
                 Welcome to the home you've been waiting for, where life unfolds
                 in a whole new way. Enjoy spacious living with stunning sunset
                 views from your balcony, calming morning walks, and a wealth of
@@ -89,17 +89,19 @@ const Home = () => {
           <QuotationForm />
         </section>
 
-        <div className="fixed bottom-[2rem] right-[1rem] z-50 flex items-center">
+        <div className="fixed bottom-[2rem] right-[0.5rem] z-50 flex items-center">
           <a
-            href="tel:+1234567890"
-            className="flex-col justify-center items-center align-center"
+            href="tel:+91 8920215863"
+            className="flex items-center"
           >
             <img
               src={caller}
               alt="Call Us"
               className="w-14 h-14 rounded-full shadow-md mr-2"
             />
-            <p>+91-9821987198</p>
+            <span className="bg-black text-white py-2 px-4 rounded-xl hover:bg-[#45a049] transition-colors duration-300">
+              +91 8920215863
+            </span>
           </a>
         </div>
       </div>
