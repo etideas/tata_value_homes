@@ -1,71 +1,215 @@
 import React, { useState } from "react";
-import HomeBanner from "../../assets/HomeBanner.jpg";
-import overview from "../../assets/overview.jpg";
+import HomeBanner from "../../assets/HomeBanner2.jpg";
+import SeamlessCarousel from "../../components/carousel/SeamlessCarousel";
 import QuotationForm from "../../components/form/QuotationForm";
+import caller from "../../assets/call2.png";
+import Typewriter from "typewriter-effect";
+import floorPlanImage1 from "../../assets/FM1.png"; // Example image, replace with actual floor plan images
+import floorPlanImage2 from "../../assets/FM2.png"; // Another example
+import floorPlanImage3 from "../../assets/FM3.png"; // Another example
 
 const Home = () => {
-  // State to toggle the visibility of the last paragraph
-  const [showLastParagraph, setShowLastParagraph] = useState(true);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [activeTab, setActiveTab] = useState("floorPlans"); // State for the tab selection
 
-  // Function to toggle the state
-  const toggleParagraph = () => {
-    setShowLastParagraph(!showLastParagraph);
+  const smallHeading = "text-md text-gray-500 mb-2";
+  const bigHeading = "text-2xl md:text-3xl";
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
   };
+
+  const floorPlans = [
+    {
+      name: "B2",
+      image: floorPlanImage1,
+      level: "2 BHK",
+      bedrooms: 2,
+      toilets: 2,
+      dressing: 2,
+      balconies: 2,
+    },
+    {
+      name: "B1",
+      image: floorPlanImage2,
+      level: "2 BHK",
+      bedrooms: 2,
+      toilets: 2,
+      dressing: 1,
+      balconies: 1,
+    },
+    {
+      name: "A",
+      image: floorPlanImage3,
+      level: "3 BHK",
+      bedrooms: 2,
+      toilets: 2,
+      dressing: 1,
+      balconies: 1,
+    },
+  ];
 
   return (
     <div>
-      <div className="">
+      <div className="relative">
+        {/* Home Banner */}
         <img
           src={HomeBanner}
           alt="Home Banner"
-          className="w-full h-[48rem] object-cover"
+          className="w-full h-[25rem] md:h-[50rem] object-cover"
+          onLoad={handleImageLoad}
         />
+
+        {/* EOI */}
+        {imageLoaded && (
+          <div className="absolute bottom-[5rem] md:bottom-[23rem] left-[2rem] md:left-[25rem] bg-black bg-opacity-50 text-white text-3xl md:text-6xl px-4 py-2">
+            <a href="#contactUs">
+              <Typewriter
+                options={{
+                  strings: ["Accepting EOI NOW!!!!"],
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 50,
+                }}
+              />
+            </a>
+          </div>
+        )}
       </div>
 
-      <div className="px-24">
+      <div
+        id="changeNav"
+        className="px-8 md:px-24"
+      >
         {/* Overview Section */}
         <section
           id="overview"
-          className="pt-20 pb-10"
+          className="pt-16 md:pt-32 pb-16 md:pb-32 px-4 md:px-10"
         >
-          <p className="text-center text-4xl border-b-2 border- pb-4">
-            A New Way Of Living
-          </p>
-
-          <p className="pt-10 text-lg mb-4">
-            Welcome to New Haven at Bahadurgarh – the home you've been waiting
-            for, where life unfolds in a whole new way. Enjoy spacious living
-            with stunning sunset views from your balcony, calming morning walks,
-            and a wealth of amenities like pools, indoor games, and outdoor
-            sports. With its secure gated community and open spaces, New Haven
-            offers a complete lifestyle experience.
-          </p>
-
-          {showLastParagraph && (
-            <p className="text-lg mb-4">
-              Phase I is already home to happy families, and now it's your turn.
-              From day one, you'll feel at home, making new friends while
-              enjoying top-tier amenities like jogging tracks, a meditation
-              room, and more. Designed by CP Kukreja Architects, this
-              eco-friendly project with 70% open spaces and rainwater harvesting
-              is the perfect blend of comfort and sustainability. Make New Haven
-              your new beginning!
+          <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center">
+            <p className="basis-2/3 text-2xl md:text-4xl leading-relaxed">
+              New Haven Bahadurgarh, Haryana
             </p>
-          )}
+            <p className="text-md md:text-lg">
+              Welcome to the home you've been waiting for, where life unfolds in
+              a whole new way. Enjoy spacious living with stunning sunset views
+              from your balcony, calming morning walks, and a wealth of
+              amenities like pools, indoor games, and outdoor sports.
+            </p>
+          </div>
 
-          <a
-            onClick={toggleParagraph}
-            className="font-bold text-black"
-          >
-            {showLastParagraph ? "Read More -" : "Read More +"}
-          </a>
-
-          <img
-            src={overview}
-            alt="Overview"
-            className="w-full object-cover h-[33rem] mt-[1.5rem]"
-          />
+          {/* Box 2 */}
+          <div className="mt-10 md:mt-20 flex flex-col md:flex-row justify-between gap-6 md:gap-14">
+            <div>
+              <p className={smallHeading}>Status</p>
+              <p className={bigHeading}>Bookings Open For Phase 2</p>
+            </div>
+            <div>
+              <p className={smallHeading}>Booking amount</p>
+              <div>
+                <p className={bigHeading}>2 BHK - 3 Lakhs</p>
+                <p className={bigHeading}>3 BHK - 5 Lakhs</p>
+              </div>
+            </div>
+            <div>
+              <p className={smallHeading}>Configurations</p>
+              <p className={bigHeading}>2 BHK, 3 BHK</p>
+            </div>
+          </div>
         </section>
+
+        {/* Tabs for Floor Plans and Gallery */}
+        <div className="flex justify-center border-b">
+          <button
+            className={`py-2 px-6 text-xl ${
+              activeTab === "floorPlans"
+                ? "border-b-4 border-black"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("floorPlans")}
+          >
+            Floor Plans
+          </button>
+          <button
+            className={`py-2 px-6 text-xl ${
+              activeTab === "gallery"
+                ? "border-b-4 border-black"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("gallery")}
+          >
+            Gallery
+          </button>
+        </div>
+
+        {/* Tab content */}
+        {activeTab === "floorPlans" && (
+          <section className="pt-10 md:pt-20 pb-10 md:pb-32">
+            {floorPlans.map((plan, index) => (
+              <div
+                key={index}
+                className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-14 mb-10"
+              >
+                {/* Floor Plan Image */}
+                <div className="w-full md:w-1/2">
+                  <img
+                    src={plan.image}
+                    alt="Floor Plan"
+                    className="w-full h-auto"
+                  />
+                </div>
+
+                {/* Floor Plan Details */}
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-2xl md:text-4xl font-light mb-4">
+                    {plan.name}
+                  </h2>
+                  <p className="text-xl mb-6">Level - {plan.level}</p>
+                  <ul className="text-lg space-y-2">
+                    <li>
+                      <strong>Bedroom:</strong> {plan.bedrooms}
+                    </li>
+                    <li>
+                      <strong>Toilet:</strong> {plan.toilets}
+                    </li>
+                    <li>
+                      <strong>Dressing:</strong> {plan.dressing}
+                    </li>
+                    <li>
+                      <strong>Balcony:</strong> {plan.balconies}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {activeTab === "gallery" && (
+          <section className="pt-10 md:pt-20 pb-10 md:pb-32">
+            <SeamlessCarousel />
+          </section>
+        )}
+
+        <section id="contactUs">
+          <QuotationForm />
+        </section>
+
+        <div className="fixed bottom-[35rem] md:bottom-[2rem] right-[0.5rem] z-50 flex items-center">
+          <a
+            href="tel:+91 8920215863"
+            className="flex items-center group"
+          >
+            <img
+              src={caller}
+              alt="Call Us"
+              className="w-10 h-10 md:w-14 md:h-14 rounded-full shadow-md mr-2"
+            />
+            <span className="hidden group-hover:block bg-black text-white py-2 px-4 md:py-3 md:px-6 rounded-xl hover:bg-[#a71ad6] transition-all duration-300">
+              +91 8920215863
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );

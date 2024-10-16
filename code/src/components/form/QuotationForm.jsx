@@ -123,7 +123,7 @@ const QuotationForm = () => {
           ></textarea>
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+            className="w-full bg-[#a71ad6] text-white py-3 rounded-lg hover:bg-[#51135f] transition duration-300"
             disabled={status.loading}
           >
             {status.loading ? "Sending..." : "Submit"}

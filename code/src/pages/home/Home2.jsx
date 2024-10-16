@@ -8,7 +8,7 @@ import Typewriter from "typewriter-effect";
 const Home = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const smallHeading = "text-md text-gray-500";
+  const smallHeading = "text-md text-gray-500 mb-2";
   const bigHeading = "text-2xl md:text-3xl";
 
   const handleImageLoad = () => {
@@ -73,16 +73,26 @@ const Home = () => {
                 <p className={smallHeading}>Status</p>
                 <p className={bigHeading}>Bookings Open For Phase 2</p>
               </div>
-              <div>
-                <p className={smallHeading}>Booking amount</p>
-                <div>
-                  <p className={bigHeading}>2 BHK - 3 Lakhs</p>
-                  <p className={bigHeading}>3 BHK - 5 Lakhs</p>
-                </div>
-              </div>
+
+              {/* Configurations Section */}
               <div>
                 <p className={smallHeading}>Configurations</p>
-                <p className={bigHeading}>1 BHK, 2 BHK, 3 BHK</p>
+                <div className="flex flex-col space-y-4">
+                  {/* 2 BHK */}
+                  <div className="relative group">
+                    <p className={bigHeading}>2 BHK</p>
+                    <p className="absolute left-0 top-full mt-1 text-gray-500 hidden group-hover:block">
+                      3 Lakhs
+                    </p>
+                  </div>
+                  {/* 3 BHK */}
+                  <div className="relative group">
+                    <p className={bigHeading}>3 BHK</p>
+                    <p className="absolute left-0 top-full mt-1 text-gray-500 hidden group-hover:block">
+                      5 Lakhs
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -90,9 +100,33 @@ const Home = () => {
 
         <section
           id="gallery"
-          className="pt-10 md:pt-20 pb-10 md:pb-20"
+          className="pt-10 md:pt-20 pb-10 md:pb-32"
         >
+          <h1 className="text-2xl md:text-4xl font-light mb-8 md:mb-10 text-center">
+            Gallery
+          </h1>
           <SeamlessCarousel />
+        </section>
+
+        <section className="mb-10  md:mb-32">
+          <h1 className="text-2xl md:text-4xl font-light mb-6 md:mb-8 text-center">
+            Location
+          </h1>
+
+          <div className="overflow-hidden resize-none max-w-full w-[1400px] h-[400px]">
+            <div
+              id="google-maps-canvas"
+              className="h-full w-full"
+            >
+              <iframe
+                title="Google Map"
+                className="h-full w-full border-0"
+                frameBorder="0"
+                src="https://www.google.com/maps/embed/v1/place?q=new+haven+bahadurghar&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
         </section>
 
         <section id="contactUs">
@@ -102,14 +136,14 @@ const Home = () => {
         <div className="fixed bottom-[35rem] md:bottom-[2rem] right-[0.5rem] z-50 flex items-center">
           <a
             href="tel:+91 8920215863"
-            className="flex items-center"
+            className="flex items-center group"
           >
             <img
               src={caller}
               alt="Call Us"
               className="w-10 h-10 md:w-14 md:h-14 rounded-full shadow-md mr-2"
             />
-            <span className="bg-black text-white py-2 px-4 md:py-3 md:px-6 rounded-xl hover:bg-[#45a049] transition-colors duration-300">
+            <span className="hidden group-hover:block bg-black text-white py-2 px-4 md:py-3 md:px-6 rounded-xl hover:bg-[#a71ad6] transition-all duration-300">
               +91 8920215863
             </span>
           </a>

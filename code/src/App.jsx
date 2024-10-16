@@ -1,7 +1,7 @@
 import "./App.css";
 import QuotationForm from "./components/form/QuotationForm";
 import Navbar from "./components/navbar/Navbar";
-import Home from "./pages/home/Home2";
+import Home from "./pages/home/Home";
 
 function App() {
   return (

@@ -7,26 +7,16 @@ const Navbar = () => {
     >
       {/* Left Section (Logo) */}
       <div className="flex items-center">
-        <span className="text-xl md:text-2xl font-bold">TATA VALUE HOMES</span>
+        <span className="text-lg[1.3rem] md:text-2xl font-medium">
+          TATA VALUE HOMES
+        </span>
       </div>
 
       {/* Center Section (Navigation Links) */}
       <div className="hidden md:flex gap-8 md:gap-16 font-bold">
         <a
-          href="#overview"
-          className=""
-        >
-          OVERVIEW
-        </a>
-        <a
-          href="#gallery"
-          className=""
-        >
-          GALLERY
-        </a>
-        <a
           href="#contactUs"
-          className=""
+          className="bg-[#a71ad6] px-4 py-2 rounded-full hover:bg-[#51135f] transition-colors duration-300"
         >
           CONTACT US
         </a>
