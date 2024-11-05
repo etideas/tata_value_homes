@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomeBanner from "../../assets/HomeBanner2.jpg";
 import SeamlessCarousel from "../../components/carousel/SeamlessCarousel";
 import QuotationForm from "../../components/form/QuotationForm";
+import PopupContactForm from "../../components/form/PopupContactForm";
 import caller from "../../assets/call2.png";
 import Typewriter from "typewriter-effect";
 import floorPlanImage1 from "../../assets/FM1.png"; // Example image, replace with actual floor plan images
@@ -9,6 +10,31 @@ import floorPlanImage2 from "../../assets/FM2.png"; // Another example
 import floorPlanImage3 from "../../assets/FM3.png"; // Another example
 
 const Home = () => {
+  const [isPopupVisible, setIsPopupVisible] = React.useState(false);
+  const [hasPopupBeenShown, setHasPopupBeenShown] = React.useState(false); // Track if popup has been shown
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const parallaxBanner = document.getElementById("plans");
+      if (parallaxBanner) {
+        const bannerTop = parallaxBanner.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        // Check if the top of the banner is within the viewable area of the screen
+        if (bannerTop <= windowHeight && bannerTop >= 0 && !hasPopupBeenShown) {
+          setIsPopupVisible(true);
+          setHasPopupBeenShown(true); // Mark the popup as shown
+        }
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasPopupBeenShown]); // Add hasPopupBeenShown as a dependency
+
   const [imageLoaded, setImageLoaded] = useState(false);
   const [activeTab, setActiveTab] = useState("floorPlans"); // State for the tab selection
 
@@ -107,8 +133,8 @@ const Home = () => {
             <div>
               <p className={smallHeading}>Booking amount</p>
               <div>
-                <p className={bigHeading}>2 BHK - 3 Lakhs</p>
-                <p className={bigHeading}>3 BHK - 5 Lakhs</p>
+                <p className={bigHeading}>2 BHK - 2 Lakhs</p>
+                <p className={bigHeading}>3 BHK - 3 Lakhs</p>
               </div>
             </div>
             <div>
@@ -119,7 +145,10 @@ const Home = () => {
         </section>
 
         {/* Tabs for Floor Plans and Gallery */}
-        <div className="flex justify-center border-b">
+        <div
+          id="plans"
+          className="flex justify-center border-b"
+        >
           <button
             className={`py-2 px-6 text-xl ${
               activeTab === "floorPlans"
@@ -211,6 +240,10 @@ const Home = () => {
           </a>
         </div>
       </div>
+
+      {isPopupVisible && (
+        <PopupContactForm onClose={() => setIsPopupVisible(false)} />
+      )}
     </div>
   );
 };
